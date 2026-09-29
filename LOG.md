@@ -29,7 +29,71 @@ Created the original IOI dataset:
 Baseline:
 
 - Clean logit difference: **3.60**
-- Corrupted logit difference: **-0.32**
+
+---
+
+## September 29, 2026
+
+### Phase 2 — Initial Literature Review
+
+Started studying existing work on mechanistic interpretability and circuit discovery to understand the ideas behind the experiment.
+
+### Wang et al. (2022)
+
+Read and studied *Interpretability in the Wild: A Circuit for Indirect Object Identification in GPT-2 Small*.
+
+Main things I learned:
+
+- GPT-2 Small can perform IOI using a set of interacting attention heads.
+- Different attention heads can have different functional roles.
+- Ablation and path patching can be used to test whether components are causally important.
+- A circuit is more than a list of correlated components; interventions are needed to test the proposed mechanism.
+
+This paper gave me the main conceptual foundation for studying the IOI task.
+
+### Conmy et al. (2023)
+
+Read and studied *Towards Automated Circuit Discovery for Mechanistic Interpretability*.
+
+Main things I learned:
+
+- Finding circuits manually can be difficult and time-consuming.
+- ACDC attempts to automate part of circuit discovery.
+- The model can be viewed as a computational graph whose connections can be tested through interventions.
+- Circuit discovery itself can be treated as a research problem.
+
+This paper helped me understand how the manual circuit analysis in Wang et al. could potentially be made more systematic.
+
+### Fey et al. (2024)
+
+Read and studied *Position: Relational Deep Learning - Graph Representation Learning on Relational Databases*.
+
+This is related work rather than a mechanistic interpretability paper.
+
+Main things I learned:
+
+- Real-world data often contains relationships between entities.
+- Relational databases can be represented as graphs.
+- Rows can be treated as nodes and relationships as edges.
+- Graph neural networks can learn from these relationships directly.
+
+This introduced me to relational deep learning and made me think more broadly about how structure is represented and used in machine learning.
+
+### Current Understanding
+
+The literature review helped me separate three ideas:
+
+- **Understanding structure inside a model** — Wang et al.
+- **Automatically discovering model structure** — Conmy et al.
+- **Learning from structure in data** — Fey et al.
+
+The first two are directly connected to the current GPT-2 IOI project. Relational deep learning is a separate but related direction that I am exploring.
+
+### Phase 2 Status
+
+**Initial literature review complete.**
+
+I have not yet claimed any new research findings from the literature. The next step is to connect the ideas from these papers to the existing GPT-2 IOI setup and define a specific experimental question.- Corrupted logit difference: **-0.32**
 - Accuracy: **100%**
 
 ### Attention Head Sweep
