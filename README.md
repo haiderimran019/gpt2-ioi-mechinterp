@@ -4,14 +4,13 @@
 
 **Phase 1: Complete**  
 **Phase 2: Complete**  
-**Current Stage: Research Question Development**  
-**Date: September 29, 2026**
+**Current Stage: Research Question Development**
 
 This project investigates how GPT-2 Small performs the **Indirect Object Identification (IOI)** task using mechanistic interpretability techniques.
 
-The first phase was a hands-on experimental study of GPT-2 Small. The second phase focused on understanding existing research on circuit discovery and related approaches.
+The first phase was a hands-on experimental study of GPT-2 Small. The second phase focused on reading existing work on mechanistic interpretability, circuit discovery, and related approaches.
 
-The project is currently moving from replication and literature review toward defining a small, experimentally testable research question.
+---
 
 ## Model
 
@@ -51,7 +50,7 @@ The project used:
 - MLP-layer intervention
 - Robustness testing
 
-## Phase 1 Results
+## Phase 1 — Experimental Results
 
 ### Attention Heads
 
@@ -104,11 +103,11 @@ This suggests that IOI performance involves contributions from both attention he
 
 ## Phase 1 Conclusion
 
-The experiments found a relatively small set of influential attention heads and significant MLP contributions in the controlled IOI task.
+The experiments identified a relatively small set of influential attention heads and significant MLP contributions in the controlled IOI task.
 
-The results were robust to the tested prompt-template and lexical changes.
+The results were also robust across the tested prompt-template and lexical changes.
 
-However, this project is primarily a **Phase 1 learning and replication project**, not a claim of discovering a new IOI circuit. IOI is already well studied.
+This was a **learning and replication project**, not a claim of discovering a new IOI circuit. IOI and its circuits have already been studied extensively.
 
 ## Phase 1 Limitations
 
@@ -119,116 +118,92 @@ However, this project is primarily a **Phase 1 learning and replication project*
 - Attention visualization does not by itself establish causality
 - Interactions between attention heads and MLPs were not fully investigated
 
-## Phase 2 — Literature Review
+---
 
-After completing the initial experiments, I reviewed existing work to understand how the results fit into mechanistic interpretability research.
+# Phase 2 — Literature Review
+
+After completing the initial experiments, I studied existing research to understand the ideas behind circuit discovery and how my experiment relates to previous work.
 
 ### Wang et al. (2022)
 
 *Interpretability in the Wild: A Circuit for Indirect Object Identification in GPT-2 Small*
 
-This paper investigates the IOI task in GPT-2 Small and identifies a circuit involving multiple groups of attention heads.
+This paper studies the IOI task in GPT-2 Small and identifies a circuit involving multiple groups of attention heads.
 
 The main ideas I learned were:
 
-- Model behavior can sometimes be explained using a smaller set of interacting components.
+- Model behavior can sometimes be explained through interacting components.
 - Different attention heads can have different functional roles.
-- Ablation can be used to test the importance of components.
-- Path patching can be used to investigate information flow between components.
-- A proposed circuit needs causal testing rather than only correlation or attention visualization.
+- Ablation can be used to test whether components are important.
+- Path patching can be used to study information flow between components.
+- A proposed mechanism needs causal testing rather than only correlation.
 
-This paper provides the main background for the IOI experiment in Phase 1.
+This paper provided the main conceptual background for the IOI experiments.
 
 ### Conmy et al. (2023)
 
 *Towards Automated Circuit Discovery for Mechanistic Interpretability*
 
-This paper introduces **ACDC**, a method for automating part of the process of discovering neural network circuits.
+This paper introduces **ACDC**, a method for automating part of the process of circuit discovery.
 
 The main ideas I learned were:
 
 - Neural networks can be represented as computational graphs.
-- Important connections can be tested through interventions.
-- Circuit discovery can be treated as a systematic and partially automated process.
-- Automated circuit discovery still depends on choices such as the task, dataset, and evaluation metric.
+- Connections in the graph can be tested using interventions.
+- Circuit discovery can be made more systematic and partially automated.
+- The process still depends on choices such as the task, dataset, and evaluation metric.
 
-This connects to the first paper by asking whether parts of manual circuit discovery can be automated.
+This paper helped me understand how the manual circuit analysis in Wang et al. could potentially be approached more automatically.
 
 ### Fey et al. (2024)
 
 *Position: Relational Deep Learning - Graph Representation Learning on Relational Databases*
 
-This paper is related work rather than a mechanistic interpretability paper.
+This is **related work**, rather than a mechanistic interpretability paper.
 
-It studies how neural networks can learn from relationships in relational databases by representing entities and their relationships as graphs.
+The paper studies how neural networks can learn from relationships in relational databases by representing entities and their relationships as graphs.
 
 The main ideas I learned were:
 
-- Relational data contains structure that can be useful for prediction.
-- Rows can be represented as nodes and relationships as edges.
-- Graph neural networks can learn representations using these relationships.
-- Relational deep learning provides another perspective on learning from structure.
+- Real-world data contains relationships and structure.
+- Relational databases can be represented as graphs.
+- Graph neural networks can learn from these relationships.
+- This provides another perspective on how machine learning systems can use structure.
 
-This paper is being explored as a possible connection to broader questions about structure in machine learning.
+I am exploring this direction because of its broader connection to learning from structure, although it is a separate research area from the current IOI project.
 
 ## What I Understand So Far
 
-The literature review helped separate three related ideas:
+The literature helped me distinguish between:
 
 - **Understanding structure inside a trained model** — Wang et al.
-- **Discovering model structure automatically** — Conmy et al.
+- **Discovering model structure** — Conmy et al.
 - **Learning from structure in data** — Fey et al.
 
-These papers do not solve the same problem. The first two are directly related to the current GPT-2 IOI project, while relational deep learning is a separate but potentially relevant research direction.
+These papers do not solve the same problem. The first two are directly connected to the current GPT-2 IOI project, while relational deep learning is a separate related direction.
 
-## Current Research Direction
+## Current Stage
 
-The current goal is to move beyond reproducing known IOI results and identify a small question that can be tested experimentally.
+The experimental and initial literature-review phases are complete.
 
-Possible directions include:
+The next step is to use what I learned from the experiments and literature to define a **small, specific, and experimentally testable research question**.
 
-- Testing whether identified important heads remain important under stronger distribution shifts.
-- Studying interactions between attention heads and MLP layers.
-- Comparing different circuit-discovery or intervention methods.
-- Investigating whether automatically identified circuits remain stable across different IOI conditions.
+I have not yet claimed a new research contribution.
 
-No final research question has been selected yet.
+---
 
-## Results Files
+## Repository
 
 ```text
-results/
-├── head_sweep.pt
-├── heatmaps.png
-├── cumulative.png
-├── top_heads.csv
-└── attention_top_heads.csv
-```
-
-## Repository Structure
-
-```text
-my-first-research/
-├── README.md
-├── research-question.md
+gpt2-ioi-mechinterp/
 ├── literature/
-│   ├── papers.md
-│   ├── wang-2022.md
-│   ├── conmy-2023.md
-│   └── relational-deep-learning.md
-├── experiments/
-│   └── README.md
-├── notes/
-│   ├── mechanistic-interpretability.md
-│   ├── circuits.md
-│   └── path-patching.md
-├── results/
-│   └── README.md
-└── references.md
+├── 01_pynb.ipynb
+├── LOG.md
+└── README.md
 ```
 
-## Next Step
+The `01_pynb.ipynb` notebook contains the experimental work from Phase 1.
 
-**Phase 3:** Narrow the research question and design an experiment that can test it.
+`LOG.md` records the development of the project over time.
 
-The aim is to build on the Phase 1 GPT-2 IOI experiments and the Phase 2 literature review rather than claiming novelty before it has been tested.
+The `literature/` directory contains notes from the papers studied during Phase 2.
